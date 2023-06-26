@@ -1,4 +1,4 @@
-#Tres en raya con interfaz fantasía.
+# Tres en raya con interfaz fantasía.
 IMPORTANTE: los estilos css con efectos de neón en movimiento funcionan solo en navegadores modernos como chrome.
 
 Pequeño videojuego creado principalmente con HTML, CSS y JavaScript. 
