@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Tres en raya</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<style>
+    body {
+        background-image: url("fondowave6.png");
+    }
+
+    h1 {
+        text-align: center;
+        color: #fff;
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px #0fa,
+            0 0 82px #0fa,
+            0 0 92px rgb(0, 153, 255),
+            0 0 102px rgb(76, 0, 255),
+            0 0 151px rgb(17, 0, 255);
+        font-style: italic;
+    }
+
+    .moon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        /*background-color: rgb(157, 0, 255);*/
+        box-shadow: 1rem 1rem 0 0 #c4c3b4,
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px rgb(195, 0, 255),
+            0 0 82px rgb(170, 0, 255),
+            0 0 92px #fff,
+            0 0 102px #fff,
+            0 0 151px rgb(85, 26, 86);
+    }
+
+
+    #zona_tablas {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+
+    #encabezado_menu {
+        text-align: center;
+        color: #fff;
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px #0fa,
+            0 0 82px #0fa,
+            0 0 92px rgb(0, 153, 255),
+            0 0 102px rgb(76, 0, 255),
+            0 0 151px rgb(17, 0, 255);
+        font-style: italic;
+        margin-top: 10%;
+        margin-bottom: 10%;
+        margin-left: 5%;
+        width: 300px;
+        height: 400px;
+        max-width: 100%;
+        border: 0.5px solid grey;
+        border-radius: 10%;
+        box-shadow: 0 0 50px rgba(184, 223, 224, 0.8);
+        background-color: rgba(224, 184, 221, 0.2);
+    }
+
+
+    #Historial {
+        text-align: center;
+        color: #fff;
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px #0fa,
+            0 0 82px #0fa,
+            0 0 92px rgb(0, 153, 255),
+            0 0 102px rgb(76, 0, 255),
+            0 0 151px rgb(17, 0, 255);
+        font-style: italic;
+        margin-top: 10%;
+        margin-bottom: 10%;
+        margin-right: 5%;
+        width: 300px;
+        height: 400px;
+        max-width: 100%;
+        border: 0.5px solid grey;
+        border-radius: 10%;
+        box-shadow: 0 0 50px rgba(184, 223, 224, 0.8);
+    }
+
+
+    #turno_jugador {
+        margin-top: 10%;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 1.5em;
+    }
+
+
+    #temporizador {
+        margin-top: 10%;
+    }
+
+
+    #tabla_juego {
+        margin: auto;
+        width: 750px;
+        max-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+
+    #botones_tipo_ficha {
+        margin-top: 12%;
+    }
+
+
+    #ajuste_botones {
+        margin-top: 15%;
+    }
+
+
+    .celda_tabla {
+        width: 250px;
+        height: 250px;
+        max-width: 33%;
+        border: 0.5px solid grey;
+        background-color: rgba(23, 17, 23, 0.5);
+        box-shadow: 0 0 50px rgba(184, 223, 224, 0.8);
+    }
+
+
+    #boton00 {
+        border-top-left-radius: 10%;
+    }
+
+
+    #boton02 {
+        border-top-right-radius: 10%;
+    }
+
+
+    #boton20 {
+        border-bottom-left-radius: 10%;
+    }
+
+
+    #boton22 {
+        border-bottom-right-radius: 10%;
+    }
+
+
+    .botonesModo {
+        position: absolute;
+    }
+
+
+    .tablas {
+        border-collapse: collapse;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 50px;
+    }
+
+
+    td,
+    tr {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+
+    @media(min-width: 1080px) {
+        #encabezado_menu {
+            text-align: center;
+            text-shadow:
+                0 0 7px #fff,
+                0 0 10px #fff,
+                0 0 21px #fff,
+                0 0 42px #0fa,
+                0 0 82px #0fa,
+                0 0 92px rgb(0, 153, 255),
+                0 0 102px rgb(76, 0, 255),
+                0 0 151px rgb(17, 0, 255);
+            font-style: italic;
+            margin-top: 15%;
+            margin-bottom: 10%;
+            margin-left: 2.5%;
+            width: 200px;
+            height: 300px;
+            max-width: 100%;
+            border: 0.5px solid grey;
+            border-radius: 10%;
+            box-shadow: 0 0 50px rgba(184, 223, 224, 0.8);
+            background-color: rgba(23, 17, 23, 0.5);
+        }
+
+
+        #Historial {
+            text-align: center;
+            color: #fff;
+            text-shadow:
+                0 0 7px #fff,
+                0 0 10px #fff,
+                0 0 21px #fff,
+                0 0 42px #0fa,
+                0 0 82px #0fa,
+                0 0 92px rgb(0, 153, 255),
+                0 0 102px rgb(76, 0, 255),
+                0 0 151px rgb(17, 0, 255);
+            font-style: italic;
+            margin-top: 15%;
+            margin-bottom: 10%;
+            margin-right: 2.5%;
+            width: 200px;
+            height: 300px;
+            max-width: 100%;
+            border: 0.5px solid grey;
+            border-radius: 10%;
+            box-shadow: 0 0 50px rgba(184, 223, 224, 0.8);
+            background-color: rgba(23, 17, 23, 0.5);
+        }
+
+
+        #turno_jugador {
+            margin-top: 10%;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 1em;
+        }
+    }
+
+
+    .botonModo {
+        width: 80%;
+        height: 40px;
+        text-align: center;
+        aspect-ratio: 1;
+        font-size: 30px;
+        color: #fff;
+        background: none;
+        border: none;
+        border-radius: 20px;
+        position: relative;
+        z-index: 0;
+        transition: .3s;
+        cursor: pointer;
+    }
+
+    @property --d {
+        syntax: '<angle>';
+        inherits: true;
+        initial-value: 0deg;
+    }
+
+    .botonModo:before {
+        content: "";
+        position: absolute;
+        inset: -8px;
+        padding: 8px;
+        border-radius: 28px;
+        background: conic-gradient(from var(--d, 0deg),
+                #21D4FD,
+                #0000 30deg 120deg,
+                #B721FF 150deg 180deg,
+                #0000 210deg 300deg,
+                #21D4FD 330deg);
+        -webkit-mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+            mask-image:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: intersect;
+    }
+
+    .botonModo:after {
+        content: "";
+        position: absolute;
+        inset: -100px;
+        background:
+            radial-gradient(80px at left 150px top 120px, #21D4FD 98%, #0000),
+            radial-gradient(80px at right 150px bottom 120px, #B721FF 98%, #0000);
+        filter: blur(60px);
+        opacity: .5;
+    }
+
+    .botonModo:before,
+    .botonModo:after {
+        transition: .5s, 99999s 99999s transform, 99999s 99999s --d;
+    }
+
+    .botonModo:hover {
+        box-shadow: 0 0 0 1px #666;
+    }
+
+    .botonModo:hover:after {
+    transform: rotate(3600deg);
+    transition: .5s,60s linear transform;
+    }
+    .botonModo:hover:before {
+    --d: 3600deg;
+    transition: .5s,60s linear --d;
+    }
+    .botonModo:hover:before {
+    background-color: #222;
+    }
+
+    /*
+    .botonModo:hover {
+        background: #ac66a8d5;
+        box-shadow: 0 0 10px #c04bbad5, 0 0 40px #c04bbad5, 0 0 80px #c04bbad5;
+        transition-delay: ls;
+    }*/
+
+
+    .iconoModo2Jugadores {
+        background-image: url("multijugador.png");
+        background-repeat: no-repeat;
+        background-position: 90%;
+    }
+
+
+    .iconoModoAleatorio {
+        background-image: url("dados.png");
+        background-repeat: no-repeat;
+        background-position: 90%;
+    }
+
+
+    .iconoModoDificil {
+        background-image: url("dificil.png");
+        background-repeat: no-repeat;
+        background-position: 90%;
+    }
+
+
+    .icono6fichas {
+        background-image: url("6 fichas.png");
+        background-repeat: no-repeat;
+        background-position: 90%;
+    }
+
+
+    .icono9fichas {
+        background-image: url("9 fichas.png");
+        background-repeat: no-repeat;
+        background-position: 90%;
+    }
+
+
+    .botonicono6 {
+        background-image: url("reiniciar.png");
+        background-repeat: no-repeat;
+        background-position: 90%;
+    }
+
+    .efecto_neon h1 {
+        margin: 1rem auto;
+        animation: efecto_neon 2s ease infinite;
+    }
+
+    @keyframes efecto_neon {
+
+        0%,
+        100% {
+            text-shadow: 0 0 10px #c04bbad5, 0 0 20px #c04bbad5, 0 0 20px #c04bbad5, 0 0 20px #c04bbad5, 0 0 2px #feffd7, 2px 2px 2px #dedfc3;
+            color: #d4cb94;
+        }
+
+        /*
+        100% {
+            text-shadow: 0 0 2px #b43fa1, 0 0 5px #9e7796, 0 0 5px #8d00b0, 0 0 5px #4300b0, 0 0 2px #6100b0, 4px 4px 2px #b00600;
+            color: #eda0d3;
+        }*/
+    }
+
+    #espacio_imagen_turno img {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<body>
+<div>
+    <div class="efecto_neon">
+        <!--<div class="moon"></div>-->
+        <h1>Bienvenido a tic tac toc, el juego que cambiará tu vida</h1>
+        <!--<div class="moon"></div>-->
+    </div>
+</div>
+<br>
+<div class="botonesModo">
+</div>
+<div id="botones_tipo_ficha">
+    <br><br><br>
+    <table id="tabla_set1" style="width: 50%;margin-left:auto;margin-right:auto;">
+        <tr class="FyCTabla2">
+            <td align="center" class="FyCTabla2">
+                <button class="botonModo icono6fichas" onclick="cantidad_fichas(6)"><b>6 Fichas</b> </button>
+            </td>
+            <td align="center" class="FyCTabla2">
+                <button class="botonModo icono9fichas" onclick="cantidad_fichas(9)"><b>9 Fichas</b></button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="botones_modo">
+    <div id="ajuste_botones">
+        <table id="tabla_set2" style="width: 80%;margin-left:auto;margin-right:auto;">
+            <tr class="FyCTabla2">
+                <td align="center" class="FyCTabla2">
+                    <button class="botonModo iconoModo2Jugadores" onclick="cambiarModo(1)"><b>Modo 1vs1</b></button>
+                </td>
+                <td align="center" class="FyCTabla2">
+                    <button class="botonModo iconoModoAleatorio" onclick="cambiarModo(2)"><b>Modo aleatorio</b></button>
+                </td>
+                <td align="center" class="FyCTabla2">
+                    <button class="botonModo iconoModoDificil" onclick="cambiarModo(3)"><b>Modo difícil</b></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="tablero_juego">
+    <table id="tabla_set3" style="width: 80%;margin-left:auto;margin-right:auto;">
+        <tr>
+            <td>
+                <button class="botonModo" onclick="resetear()">Volver al menú</button>
+            </td>
+            <td>
+                <button class="botonModo" onclick="reiniciar()">Reiniciar partida</button>
+            </td>
+        </tr>
+    </table>
+    <div id="zona_tablas">
+        <div id="encabezado_menu">
+            <div id="turno_jugador">
+                <label>Turno del jugador: </label>
+                <div id="espacio_imagen_turno">
+                    <img id="imagen_turno_jugador" src="cat.png" alt="Imagen no encontrada">
+                </div>
+                <label name="turno" id="turno">Jugador 1</label><label>.</label>
+            </div>
+            <div id="temporizador">
+                <label class="comentario_tiempo">Tiempo restante: </label><label name="tiempo"
+                    id="tiempoRestante">30</label><label class="comentario_tiempo">
+                    segundos</label>
+            </div>
+            <br>
+            <div id="tiempoTotal">
+                <label>Tiempo de partida: </label><br><label name="tiempo"
+                    id="tiempoTotalContador"></label><label></label>
+            </div>
+        </div>
+        <br><br>
+        <div id="tabla_juego">
+            <button class="celda_tabla" onclick="botonAccion(0,0,'boton00')" id="boton00"></button>
+            <button class="celda_tabla" onclick="botonAccion(0,1,'boton01')" id="boton01"></button>
+            <button class="celda_tabla" onclick="botonAccion(0,2,'boton02')" id="boton02"></button>
+            <button class="celda_tabla" onclick="botonAccion(1,0,'boton10')" id="boton10"></button>
+            <button class="celda_tabla" onclick="botonAccion(1,1,'boton11')" id="boton11"></button>
+            <button class="celda_tabla" onclick="botonAccion(1,2,'boton12')" id="boton12"></button>
+            <button class="celda_tabla" onclick="botonAccion(2,0,'boton20')" id="boton20"></button>
+            <button class="celda_tabla" onclick="botonAccion(2,1,'boton21')" id="boton21"></button>
+            <button class="celda_tabla" onclick="botonAccion(2,2,'boton22')" id="boton22"></button>
+        </div>
+        <div id="Historial">
+            <br><br>
+            <table border="1" class="tablas">
+                <caption>Jugador 1</caption>
+                <tr>
+                    <td>Victorias</td>
+                    <td>Empates</td>
+                    <td>Derrotas</td>
+                </tr>
+                <tr>
+                    <td id="conteoVictoriasJ1">0</td>
+                    <td class="conteoEmpates">0</td>
+                    <td id="conteoDerrotasJ1">0</td>
+                </tr>
+            </table>
+            <br><br><br>
+            <table border="1" class="tablas">
+                <caption id="jugador_o_cpu">Jugador 2</caption>
+                <tr>
+                    <td>Victorias</td>
+                    <td>Empates</td>
+                    <td>Derrotas</td>
+                </tr>
+                <tr>
+                    <td id="conteoVictoriasJ2">0</td>
+                    <td class="conteoEmpates">0</td>
+                    <td id="conteoDerrotasJ2">0</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <script>
+
+        modo_aleatorio = () => {
+            ////////////////////////////////////////MODO ALEATORIO//////////////////////////////
+            //Añadir imagen de forma aleatoria.
+            let filas = -2;
+            let columnas = -2;
+            let digito = -1;
+            let contador = 0;
+            var turno_rand = false;
+
+            while (digito == -1) {
+                filas = Math.floor(Math.random() * 3);
+                columnas = Math.floor(Math.random() * 3);
+                if (tablero_3_en_raya[filas][columnas] == 0 && turno_rand == false) {
+                    //Zona sobre la que iría la imagen de la ficha del PC (aleatoria).
+                    colocar_ficha(filas, columnas, -1, "alien1");
+                    turno_rand = true;
+                    digito = 1;
+                    console.log("Sago del while");
+                }
+            }
+            ////////////////////////////////////////MODO ALEATORIO//////////////////////////////
+        }
+
+        //////////////////////////////////MODO AVANZADO///////////////////////////////////////////
+        modo_avanzado = () => {
+            let contador_inicio = 0;
+            var turno_avanzado = false; //Controla que se utilice una sola ficha por turno
+            for (let consulta_fila = 0; consulta_fila < 3; consulta_fila++) {
+                for (let consulta_columna = 0; consulta_columna < 3; consulta_columna++) {
+                    if (tablero_3_en_raya[consulta_fila][consulta_columna] == 1 ||
+                        tablero_3_en_raya[consulta_fila][consulta_columna] == -1) {
+                        contador_inicio++;
+                    }
+                }
+            }
+            console.log("El contador " + contador_inicio);
+            if (contador_inicio == 1) {
+                //Añadir imagen con inteligencia artificial.
+                var filas2 = -2;
+                var columnas2 = -2;
+                var digito2 = -1;
+                while (digito2 == -1 || digito2 == 1) {
+                    filas2 = Math.floor(Math.random() * 3);
+                    columnas2 = Math.floor(Math.random() * 3);
+                    if (tablero_3_en_raya[filas2][columnas2] == 0) {
+                        //Zona sobre la que iría la imagen de la ficha del PC (aleatoria).
+                        colocar_ficha(filas2, columnas2, -1, "alien1");
+
+                        for (digito2 in tablero_3_en_raya) {
+                            mostrar_array = tablero_3_en_raya[digito2] + "<br>";
+                            console.log(mostrar_array);
+                        }  //Muestra por consola el array
+                    }
+                }
+            } else {
+                for (let celda in tablero_3_en_raya) {
+                    //El array se recorre y se recogen los valores en digito por lo que
+                    //no es necesario guardarlo en una variable aparte.
+                    let mostrar_array = tablero_3_en_raya[celda] + "<br>";
+                    console.log(mostrar_array);
+                }
+
+
+                for (let fila_IA = 0; fila_IA < 3; fila_IA++) {
+                    for (let columna_IA = 0; columna_IA < 3; columna_IA++) {
+                        if (((tablero_3_en_raya[fila_IA][columna_IA] == -1) && (tablero_3_en_raya[fila_IA][columna_IA + 1] == -1) && (tablero_3_en_raya[fila_IA][columna_IA + 2] == 0))
+                            || ((tablero_3_en_raya[fila_IA][columna_IA] == -1) && (tablero_3_en_raya[fila_IA][columna_IA + 2] == -1) && (tablero_3_en_raya[fila_IA][columna_IA + 1] == 0))
+                            || ((tablero_3_en_raya[fila_IA][columna_IA + 1] == -1) && (tablero_3_en_raya[fila_IA][columna_IA + 2] == -1) && (tablero_3_en_raya[fila_IA][columna_IA] == 0))
+                            || ((tablero_3_en_raya[fila_IA][columna_IA] == 1) && (tablero_3_en_raya[fila_IA][columna_IA + 1] == 1) && (tablero_3_en_raya[fila_IA][columna_IA + 2] == 0))
+                            || ((tablero_3_en_raya[fila_IA][columna_IA] == 1) && (tablero_3_en_raya[fila_IA][columna_IA + 2] == 1) && (tablero_3_en_raya[fila_IA][columna_IA + 1] == 0))
+                            || ((tablero_3_en_raya[fila_IA][columna_IA + 1] == 1) && (tablero_3_en_raya[fila_IA][columna_IA + 2] == 1) && (tablero_3_en_raya[fila_IA][columna_IA] == 0))
+                        ) {
+                            console.log("siguiente =" + fila_IA + " columna_IA = " + columna_IA);
+                            for (let x = fila_IA; x < fila_IA + 1; x++) {
+                                for (let y = 0; y < 3; y++) {
+                                    if (tablero_3_en_raya[x][y] == 0 && turno_avanzado == false) {
+                                        colocar_ficha(x, y, -1, "alien1");
+                                        turno_avanzado = true;
+                                    }
+                                }
+                            }
+                        } else if (((tablero_3_en_raya[0][columna_IA] == -1) && (tablero_3_en_raya[1][columna_IA] == -1) && (tablero_3_en_raya[2][columna_IA] == 0))
+                            || ((tablero_3_en_raya[0][columna_IA] == -1) && (tablero_3_en_raya[2][columna_IA] == -1) && (tablero_3_en_raya[1][columna_IA] == 0))
+                            || ((tablero_3_en_raya[1][columna_IA] == -1) && (tablero_3_en_raya[2][columna_IA] == -1) && (tablero_3_en_raya[0][columna_IA] == 0))
+                            || ((tablero_3_en_raya[0][columna_IA] == 1) && (tablero_3_en_raya[1][columna_IA] == 1) && (tablero_3_en_raya[2][columna_IA] == 0))
+                            || ((tablero_3_en_raya[0][columna_IA] == 1) && (tablero_3_en_raya[2][columna_IA] == 1) && (tablero_3_en_raya[1][columna_IA] == 0))
+                            || ((tablero_3_en_raya[1][columna_IA] == 1) && (tablero_3_en_raya[2][columna_IA] == 1) && (tablero_3_en_raya[0][columna_IA] == 0))) {
+                            console.log("Filas y columnas: " + x + y);
+                            console.log("COLUMNAS");
+                            if (tablero_3_en_raya[0][columna_IA] == 0 && turno_avanzado == false) {
+                                colocar_ficha(0, columna_IA, -1, "alien1");
+                                turno_avanzado = true;
+                            } else if (tablero_3_en_raya[1][columna_IA] == 0 && turno_avanzado == false) {
+                                colocar_ficha(1, columna_IA, -1, "alien1");
+                                turno_avanzado = true;
+                            } else if (tablero_3_en_raya[2][columna_IA] == 0 && turno_avanzado == false) {
+                                colocar_ficha(2, columna_IA, -1, "alien1");
+                                turno_avanzado = true;
+                            }
+                        } else if (((tablero_3_en_raya[0][0] == -1) && (tablero_3_en_raya[1][1] == -1) && (tablero_3_en_raya[2][2] == 0))
+                            || ((tablero_3_en_raya[0][0] == -1) && (tablero_3_en_raya[2][2] == -1) && (tablero_3_en_raya[1][1] == 0))
+                            || ((tablero_3_en_raya[1][1] == -1) && (tablero_3_en_raya[2][2] == -1) && (tablero_3_en_raya[0][0] == 0))
+                            || ((tablero_3_en_raya[0][0] == 1) && (tablero_3_en_raya[1][1] == 1) && (tablero_3_en_raya[2][2] == 0))
+                            || ((tablero_3_en_raya[0][0] == 1) && (tablero_3_en_raya[2][2] == 1) && (tablero_3_en_raya[1][1] == 0))
+                            || ((tablero_3_en_raya[1][1] == 1) && (tablero_3_en_raya[2][2] == 1) && (tablero_3_en_raya[0][0] == 0))
+                        ) {
+                            if (tablero_3_en_raya[1][1] == 0 && turno_avanzado == false) {
+                                colocar_ficha(1, 1, -1, "alien1");
+                                turno_avanzado = true;
+                            } else if (tablero_3_en_raya[2][2] == 0 && turno_avanzado == false) {
+                                colocar_ficha(2, 2, -1, "alien1");
+                                turno_avanzado = true;
+                            } else if (tablero_3_en_raya[0][0] == 0 && turno_avanzado == false) {
+                                colocar_ficha(0, 0, -1, "alien1");
+                                turno_avanzado = true;
+                            }
+                        } else if (((tablero_3_en_raya[0][2] == -1) && (tablero_3_en_raya[1][1] == -1) && (tablero_3_en_raya[2][0] == 0))
+                            || ((tablero_3_en_raya[0][2] == -1) && (tablero_3_en_raya[2][0] == -1) && (tablero_3_en_raya[1][1] == 0))
+                            || ((tablero_3_en_raya[1][1] == -1) && (tablero_3_en_raya[2][0] == -1) && (tablero_3_en_raya[0][2] == 0))
+                            || ((tablero_3_en_raya[0][2] == 1) && (tablero_3_en_raya[1][1] == 1) && (tablero_3_en_raya[2][0] == 0))
+                            || ((tablero_3_en_raya[0][2] == 1) && (tablero_3_en_raya[2][0] == 1) && (tablero_3_en_raya[1][1] == 0))
+                            || ((tablero_3_en_raya[1][1] == 1) && (tablero_3_en_raya[2][0] == 1) && (tablero_3_en_raya[0][2] == 0))
+                        ) {
+                            if (tablero_3_en_raya[1][1] == 0 && turno_avanzado == false) {
+                                colocar_ficha(1, 1, -1, "alien1");
+                                turno_avanzado = true;
+                            } else if (tablero_3_en_raya[0][2] == 0 && turno_avanzado == false) {
+                                colocar_ficha(0, 2, -1, "alien1");
+                                turno_avanzado = true;
+                            } else if (tablero_3_en_raya[2][0] == 0 && turno_avanzado == false) {
+                                colocar_ficha(2, 0, -1, "alien1");
+                                turno_avanzado = true;
+                            }
+                        }
+                    }
+                }
+                /*En el caso de que no se haya colocado ficha de forma automática porque no se encuentra
+                amenaza de perder se colocará una ficha cerca de otra del mismo tipo (si es posible) aumentando ligeramente la dificultad
+                y facilitando la victoria de la cpu.*/
+                for (let x = 0; x < 3; x++) {
+                    for (let y = 0; y < 3; y++) {
+                        if ((((tablero_3_en_raya[x][y] != 0) && (tablero_3_en_raya[x][y + 1] == 0) && (tablero_3_en_raya[x][y + 2] == 0))
+                            || ((tablero_3_en_raya[x][y] == 0) && (tablero_3_en_raya[x][y + 1] == 0) && (tablero_3_en_raya[x][y + 2] != 0))
+                            || ((tablero_3_en_raya[x][y] == 0) && (tablero_3_en_raya[x][y + 1] != 0) && (tablero_3_en_raya[x][y + 2] == 0))
+                        ) && turno_avanzado == false) {
+                            for (let x = 0; x < 3; x++) {
+                                for (let y = 0; y < 3; y++) {
+                                    if (tablero_3_en_raya[x][y] == 0 && (tablero_3_en_raya[x][y + 1] == -1 || tablero_3_en_raya[x][y + 2] == -1
+                                        || tablero_3_en_raya[x][y - 1] == -1 || tablero_3_en_raya[x][y - 2] == -1) && turno_avanzado == false) {
+                                        colocar_ficha(x, y, -1, "alien1");
+                                        turno_avanzado = true;
+                                    }
+                                }
+                            }
+                            //En caso de no encontrar posibilidad de colocar una ficha cerca de otra del mismo tipo.
+                            for (let x = 0; x < 3; x++) {
+                                for (let y = 0; y < 3; y++) {
+                                    if (tablero_3_en_raya[x][y] == 0 && turno_avanzado == false) {
+                                        colocar_ficha(x, y, -1, "alien1");
+                                        turno_avanzado = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                //Se revisa si se ha ganado en el turno y se muestra al jugador.
+                revisionUsuario = verificarResultadoCasillas(x, y, tablero_3_en_raya);
+                if (revisionUsuario == true) {
+                    console.log("No hace falta turno para el PC");
+                    alert("Se acabó tu show.");
+                    mostrarHistorial(turno_jugador);
+                    clearInterval(contadorTiempo2);
+                    desactivarBotones();
+                }
+            }
+        }
+        //////////////////////////////////MODO AVANZADO///////////////////////////////////////////
+
+
+        /////////////////////////////////////MODO 6 FICHAS ///////////////////////////////////////////////
+        //////////////////////////////////////////6 fichas/////////////////////////////////////////
+
+        function contador_6_fichas() {
+            //Comprobación del número de fichas.
+            let contador_ficha_j1 = 0;
+
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (tablero_3_en_raya[i][j] == 1) {
+                        contador_ficha_j1++;
+                        console.log("Contador 6 fichas J1: " + contador_ficha_j1);
+                    }
+                }
+            }
+            //Retorna un valor que servirá para diferenciar acciones.
+            if (contador_ficha_j1 >= 3) {
+                //Eliminar ficha
+                return true;
+            } else {
+                //Añadir ficha
+                return false;
+            }
+        }
+
+        function contador_6_fichas_2() {
+            //Comprobación del número de fichas.
+            let contador_ficha_j2 = 0;
+
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (tablero_3_en_raya[i][j] == -1) {
+                        contador_ficha_j2++;
+                        console.log("Contador 6 fichas J2: " + contador_ficha_j2);
+                    }
+                }
+            }
+            //Retorna un valor que servirá para diferenciar acciones.
+            if (contador_ficha_j2 >= 3) {
+                //Eliminar ficha
+                return true;
+            } else {
+                //Añadir ficha
+                return false;
+            }
+        }
+
+
+        /////////////////////////////////6 fichas////////////////////////////////////////
+        //Función utilizada para eliminar.
+        eliminar = (i, j) => {
+            //Elimina la imagen
+            if (estado_turno_6 == false) {
+
+                if (tablero_3_en_raya[i][j] == 1) {
+                    var boton = document.getElementById("boton" + i + j);
+                    var imagen = boton.getAttributeNode("src");
+                    if (boton.hasChildNodes()) {
+                        boton.removeChild(boton.firstElementChild);
+                    }
+                    //Elimina la ficha en el array en el array.
+                    tablero_3_en_raya[i][j] = 0;
+                }
+
+            } else {
+
+                if (tablero_3_en_raya[i][j] == -1) {
+                    var boton = document.getElementById("boton" + i + j);
+                    var imagen = boton.getAttributeNode("src");
+                    if (boton.hasChildNodes()) {
+                        boton.removeChild(boton.firstElementChild);
+                    }
+                    //Elimina la ficha en el array en el array.
+                    tablero_3_en_raya[i][j] = 0;
+                }
+            }
+        }
+        //////////////////////////////////////////MODO 6 FICHAS/////////////////////////////////////////
+
+
+        ////////////////////////BOTONES PERTENECIENTES A LA PANTALLA DE INICIO//////////////////////
+        document.getElementById("botones_modo").style.display = "none";
+        document.getElementById("tablero_juego").style.display = "none";
+
+        function cantidad_fichas(numeros) {
+            document.getElementById("botones_tipo_ficha").style.display = "none";
+            document.getElementById("botones_modo").style.display = "initial";
+            tipo_fichas = numeros;
+        }
+
+
+        function resetear(params) {
+            document.getElementById("tablero_juego").style.display = "none";
+            document.getElementById("botones_tipo_ficha").style.display = "initial";
+            reiniciar()
+            contadorEmpate = 0;
+        }
+
+
+        function reiniciar() {
+            //document.getElementById("botones_modo").style.display = "none";
+            //document.getElementById("tablero_juego").style.display = "initial";
+            //document.getElementById("botones_tipo_ficha").style.display = "initial";
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    const boton = document.getElementById("boton" + i + j);
+                    const imagen = boton.getAttributeNode("src");
+                    if (boton.hasChildNodes()) {
+                        boton.removeChild(boton.firstElementChild);
+                    }
+                    clearInterval(contadorTiempo2);
+                    temporizador();
+                }
+            }
+            for (let i = 0; i < tablero_3_en_raya.length; i++) {
+                for (let j = 0; j < tablero_3_en_raya[i].length; j++) {
+                    tablero_3_en_raya[i][j] = 0;
+                    console.log(tablero_3_en_raya[i][j] = 0);
+                }
+            }
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    const boton = document.getElementById("boton" + i + j);
+                    if (boton.disabled == true) {
+                        boton.disabled = false;
+                    }
+                }
+            }
+            //Reinicia el contador.
+            contador_fichas = 0;
+            estado_turno_6 = false;
+            estado_turno = false;
+            //Define la información del panel izquierdo.
+            const comentario_del_tiempo = document.getElementsByClassName("comentario_tiempo");
+            comentario_del_tiempo[0].innerText = "Tiempo restante: ";
+            comentario_del_tiempo[1].innerText = " segundos";
+        }
+
+        //Función para seleccionar el modo de juego a través del botón onclick.
+        cambiarModo = (tipo) => {
+            document.getElementById("botones_modo").style.display = "none";
+            document.getElementById("tablero_juego").style.display = "initial";
+            modo = tipo;
+            clearInterval(contadorTiempo2);
+            temporizador();
+            //Detenemos el tiempo del modo de juego anterior antes de cambiar de modo
+            clearInterval(contadorTiempoTotal);
+            //Iniciamos un nuevo tiempo para la partida total
+            iniciarTiempoTotal();
+            //Reiniciar.
+            reiniciar();
+
+            contadorVictoriasJ1 = 0;
+            contadorVictoriasJ2 = 0;
+            conteoDerrotasJ1 = 0;
+            conteoDerrotasJ2 = 0;
+            conteoEmpates = 0;
+            contadorPartidasJugadas = 0;
+
+            const espacioVJ1 = document.getElementById("conteoVictoriasJ1");
+            espacioVJ1.innerText = contadorVictoriasJ2;
+            const espacioVJ2 = document.getElementById("conteoVictoriasJ2");
+            espacioVJ2.innerText = contadorVictoriasJ1;
+            const espacioDJ1 = document.getElementById("conteoDerrotasJ1");
+            espacioDJ1.innerText = conteoDerrotasJ1;
+            const espacioDJ2 = document.getElementById("conteoDerrotasJ2");
+            espacioDJ2.innerText = conteoDerrotasJ2;
+            const espacioEmpates = document.getElementsByClassName("conteoEmpates");
+            for (let i = 0; i < 2; i++) {
+                espacioEmpates[i].innerText = 0;
+            }
+
+            const comentario_del_tiempo = document.getElementsByClassName("comentario_tiempo");
+            comentario_del_tiempo[0].innerText = "Tiempo restante: ";
+            comentario_del_tiempo[1].innerText = " segundos";
+        }
+        ////////////////////////BOTONES PERTENECIENTES A LA PANTALLA DE INICIO//////////////////////
+
+
+        /////////////////////////////FUNCIONES DE VERIFICACIÓN/////////////////////////////////////
+        //Función utilizada para mostrar si se ha dado 3 en raya.
+        verificarResultadoCasillas = (x, y, tablero_3_en_raya) => {
+            //Se comprueban todas las posibilidades de victoria.
+            for (let i = 0; i < filas; i++) {
+                for (let j = 0; j < columnas; j++) {
+                    if (((tablero_3_en_raya[i][j] == 1) && (tablero_3_en_raya[i][j + 1] == 1) && (tablero_3_en_raya[i][j + 2] == 1)) ||
+                        ((tablero_3_en_raya[i][j] == -1) && (tablero_3_en_raya[i][j + 1] == -1) && (tablero_3_en_raya[i][j + 2] == -1))) {
+                        console.log("Has ganado en horizontal");
+                        clearInterval(contadorTiempo2);
+                        return true;
+                    } else if (((tablero_3_en_raya[0][0] == 1) && (tablero_3_en_raya[1][1] == 1) && (tablero_3_en_raya[2][2] == 1)) ||
+                        ((tablero_3_en_raya[0][0] == -1) && (tablero_3_en_raya[1][1] == -1) && (tablero_3_en_raya[2][2] == -1))) {
+                        console.log("Ganas en diagonal");
+                        clearInterval(contadorTiempo2);
+                        return true;
+                    } else if (((tablero_3_en_raya[0][2] == 1) && (tablero_3_en_raya[1][1] == 1) && (tablero_3_en_raya[2][0] == 1)) ||
+                        ((tablero_3_en_raya[0][2] == -1) && (tablero_3_en_raya[1][1] == -1) && (tablero_3_en_raya[2][0] == -1))) {
+                        console.log("Ganas en diagonal 2");
+                        clearInterval(contadorTiempo2);
+                        return true;
+                    } else if (((tablero_3_en_raya[0][j] == 1) && (tablero_3_en_raya[1][j] == 1) && (tablero_3_en_raya[2][j] == 1)) ||
+                        ((tablero_3_en_raya[0][j] == -1) && (tablero_3_en_raya[1][j] == -1) && (tablero_3_en_raya[2][j] == -1))) {
+                        console.log("Has ganado en vertical");
+                        clearInterval(contadorTiempo2);
+                        return true;
+                    }
+                }
+            }
+        }
+
+
+        //Función para colocar una ficha en el array y en la interfaz.
+        colocar_ficha = (x, y, ficha, imagen) => {
+            tablero_3_en_raya[x][y] = ficha;
+            var boton = document.getElementById("boton" + x + y);
+            var imagen_ficha = document.createElement("img");
+            imagen_ficha.setAttribute("src", imagen + ".png", "alt", "ficha");
+            boton.appendChild(imagen_ficha);
+        }
+        ///////////////////Segundo jugador///////////////////////
+        turnoPC_Usuario2 = (x, y, casilla, tablero_3_en_raya, modo) => {
+            turno_jugador = "Jugador 1";
+            clearInterval(contadorTiempo2);
+            temporizador();
+            const campoTurno = document.getElementById("turno");
+            campoTurno.innerText = turno_jugador;
+
+            let revisionUsuario = verificarResultadoCasillas(x, y, tablero_3_en_raya);
+            if (revisionUsuario == true && modo == 1) {
+                console.log("No hace falta turno para el PC");
+
+                clearInterval(contadorTiempo2);
+            } else {
+                if (tipo_fichas == 9) {
+                    //Añadir imagen por elección del segundo jugador.
+                    if (tablero_3_en_raya[x][y] == 0) {
+
+                        ////////////////////9 fichas//////////////////////////////
+                        var boton = document.getElementById(casilla);
+                        //Zona sobre la que iría la imagen de la ficha.
+                        var imagen_ficha = document.createElement("img");
+                        imagen_ficha.setAttribute("src", "alien1.png", "alt", "ficha");
+                        boton.appendChild(imagen_ficha);
+                        tablero_3_en_raya[x][y] = -1; //Se añade 1 a la posición del array correspondiente.
+                        estado_turno = false;
+                    }
+                } else {
+                    ////////////////////6 fichas///////////////////////////
+                    let partida_6_fichas2 = contador_6_fichas_2();
+
+                    if (partida_6_fichas2 == true && estado_turno_6 == true) {
+                        //Revisar si es 1 o -1.
+                        if (tablero_3_en_raya[x][y] = -1) {
+                            eliminar(x, y);
+                            //estado_turno_6 == true;
+                        }
+
+                    } else if (tablero_3_en_raya[x][y] == 0 && estado_turno_6 == true) {
+                        colocar_ficha(x, y, -1, "alien1");
+                        estado_turno_6 = false;
+
+                    }
+
+                }
+            }
+        }
+
+        //Creación de la matriz.
+        let filas = 3;
+        let columnas = 3;
+        //Creación de la matriz base del tablero.
+        var tablero_3_en_raya = new Array(filas);
+        //Casos de 6 o 9 fichas;
+        let tipo_fichas = 9;
+        //Turno del jugador
+        let turno_jugador = "Jugador 1";
+        //Contiene el tiempo en el que se inician los turnos del jugador
+        var fechaTemporizar = new Date();
+        //Contiene el tiempo en el que se inició la partida (no de los turnos)
+        var fechaTemporizarTotal = new Date();
+        //Contiene el objeto que nos permitirá luego parar el intervalo que activa el tiempo total (de esta forma no se solapan)
+        var contadorTiempoTotal;
+        var contadorTiempo2;
+        let contadorVictoriasJ1 = 0;
+        let contadorVictoriasJ2 = 0;
+        let conteoDerrotasJ2 = 0;
+        let conteoDerrotasJ1 = 0;
+        let contadorEmpate = 0;
+        //CUENTA LAS FICHAS
+        let contador_fichas = 0;
+
+        for (var x = 0; x < filas; x++) {
+            tablero_3_en_raya[x] = new Array();
+            for (var y = 0; y < columnas; y++) {
+                //Rellenamos el array con 0, número que indicará las posiciones vacías.
+                tablero_3_en_raya[x][y] = 0;
+            }
+        }
+        //Elegimos la variable al pulsar el botón de dificultad
+        let modo = 1; //Por defecto se encuentra el modo 1vs1
+        let estado_turno = false;
+        let estado_turno_6 = false;
+
+        //Indica la posición en la que se ha pulsado y se transcribe al array bidimensional.
+        function botonAccion(x, y, casilla) {
+            turno_jugador = "Jugador 2";
+            const campoTurno = document.getElementById("turno");
+            campoTurno.innerText = turno_jugador;
+            clearInterval(contadorTiempo2);
+            temporizador();
+
+            let revisionUsuario = verificarResultadoCasillas(x, y, tablero_3_en_raya);
+            if (revisionUsuario == true) {
+                console.log("No hace falta turno para el PC");
+                alert("Se acabó tu show.");
+                mostrarHistorial(turno_jugador);
+                clearInterval(contadorTiempo2);
+                desactivarBotones();
+            } else {
+
+                if (tipo_fichas == 6) {
+                    //////////////////////////////////////////6 fichas/////////////////////////////////////////
+                    let partida_6_fichas = contador_6_fichas();
+
+                    if (partida_6_fichas == true && estado_turno_6 == false) {
+                        //Revisar si es 1 o -1.
+                        if (tablero_3_en_raya[x][y] == 1) {
+                            let contador_1 = 0;
+                            for (let i = 0; i < tablero_3_en_raya.length; i++) {
+                                for (let j = 0; j < tablero_3_en_raya[i].length; j++) {
+                                    if (tablero_3_en_raya[i][j] == 1) {
+                                        contador_1++;
+                                    }
+                                }
+                            }
+                            if (contador_1 >= 3) {
+                                eliminar(x, y);
+                                estado_turno_6 == true;
+                            }
+                            console.log("Dentro hay: " + tablero_3_en_raya[x][y]);
+                        }
+                    } else if (tablero_3_en_raya[x][y] == 0 && estado_turno_6 == false) {
+                        colocar_ficha(x, y, 1, "cat");
+                        estado_turno_6 = true;
+
+                        //Se revisa si se ha ganado en el turno y se muestra al jugador.
+                        revisionUsuario = verificarResultadoCasillas(x, y, tablero_3_en_raya);
+                        if (revisionUsuario == true) {
+                            console.log("No hace falta turno para el PC");
+                            alert("Se acabó tu show.");
+                            mostrarHistorial(turno_jugador);
+                            clearInterval(contadorTiempo2);
+                            desactivarBotones();
+                        } else if (modo == 2 || modo == 3) {
+
+                            clearInterval(contadorTiempo2);
+                            temporizador();
+                            turno_jugador = "Su turno";
+                            const campoTurno = document.getElementById("turno");
+                            campoTurno.innerText = turno_jugador;
+
+                            //Se revisa si se ha ganado en el turno y se muestra al jugador.
+                            revisionUsuario = verificarResultadoCasillas(x, y, tablero_3_en_raya);
+                            if (revisionUsuario == true) {
+                                console.log("No hace falta turno para el PC");
+                                alert("Se acabó tu show.");
+                                mostrarHistorial(turno_jugador);
+                                clearInterval(contadorTiempo2);
+                                desactivarBotones();
+                            } else {
+
+                                if (modo == 2) {
+                                    //Revisar si es 1 o -1.
+                                    let partida_6_fichasModo2 = contador_6_fichas_2();
+                                    console.log(partida_6_fichasModo2);
+
+                                    if (partida_6_fichasModo2 == false) {
+                                        modo_aleatorio();
+                                        estado_turno_6 = false;
+                                        //no_eliminar = false;
+
+                                    } else {
+                                        //Eliminar imagen de forma aleatoria.
+                                        let fila = -2;
+                                        let columna = -2;
+                                        let digito = -1;
+                                        var turno_rand = false;
+
+                                        while (digito == -1) {
+                                            fila = Math.floor(Math.random() * 3);
+                                            columna = Math.floor(Math.random() * 3);
+                                            if (tablero_3_en_raya[fila][columna] == -1 && turno_rand == false) {
+                                                //Zona sobre la que iría la imagen de la ficha del PC (aleatoria).
+                                                eliminar(fila, columna);
+                                                modo_aleatorio();
+                                                estado_turno_6 = false;
+                                                turno_rand = true;
+                                                digito = 1;
+                                            }
+                                        }
+                                    }
+
+                                    //Se revisa si se ha ganado en el turno y se muestra al jugador.
+                                    revisionUsuario = verificarResultadoCasillas(x, y, tablero_3_en_raya);
+                                    if (revisionUsuario == true) {
+                                        console.log("No hace falta turno para el PC");
+                                        alert("Se acabó tu show.");
+                                        mostrarHistorial(turno_jugador);
+                                        clearInterval(contadorTiempo2);
+                                        desactivarBotones();
+                                    }
+
+                                } else if (modo == 3) {
+
+                                    let partida_6_fichasModo3 = contador_6_fichas_2();
+                                    console.log(partida_6_fichasModo3);
+                                    if (partida_6_fichasModo3 == false) {
+                                        modo_avanzado();
+                                        estado_turno_6 = false;
+
+                                    } else {
+                                        let contador_inicio = 0;
+                                        estado_turno_6 = false;
+                                        var turno_avanzado = false; //Controla que se utilice una sola ficha por turno
+                                        for (let consulta_fila = 0; consulta_fila < 3; consulta_fila++) {
+                                            for (let consulta_columna = 0; consulta_columna < 3; consulta_columna++) {
+                                                if (tablero_3_en_raya[consulta_fila][consulta_columna] == 1 ||
+                                                    tablero_3_en_raya[consulta_fila][consulta_columna] == -1) {
+                                                    contador_inicio++;
+                                                }
+                                            }
+                                        }
+
+                                        for (let celda in tablero_3_en_raya) {
+                                            //El array se recorre y se recogen los valores en digito por lo que
+                                            //no es necesario guardarlo en una variable aparte.
+                                            let mostrar_array = tablero_3_en_raya[celda] + "<br>";
+                                            console.log(mostrar_array);
+                                        }
+
+                                        //Revisión
+                                        for (let fila_IA = 0; fila_IA < 3; fila_IA++) {
+                                            for (let columna_IA = 0; columna_IA < 3; columna_IA++) {
+                                                if (((tablero_3_en_raya[fila_IA][columna_IA] == -1) && (tablero_3_en_raya[fila_IA][columna_IA + 1] == 0) && (tablero_3_en_raya[fila_IA][columna_IA + 2] == 0))
+                                                    || ((tablero_3_en_raya[fila_IA][columna_IA] == 0) && (tablero_3_en_raya[fila_IA][columna_IA + 2] == -1) && (tablero_3_en_raya[fila_IA][columna_IA + 1] == 0))
+                                                    || ((tablero_3_en_raya[fila_IA][columna_IA + 1] == -1) && (tablero_3_en_raya[fila_IA][columna_IA + 2] == 0) && (tablero_3_en_raya[fila_IA][columna_IA] == 0))
+                                                    || ((tablero_3_en_raya[fila_IA][columna_IA] == -1) && (tablero_3_en_raya[fila_IA][columna_IA + 1] == 1) && (tablero_3_en_raya[fila_IA][columna_IA + 2] == 0))
+                                                    || ((tablero_3_en_raya[fila_IA][columna_IA] == 1) && (tablero_3_en_raya[fila_IA][columna_IA + 2] == -1) && (tablero_3_en_raya[fila_IA][columna_IA + 1] == 0))
+                                                    || ((tablero_3_en_raya[fila_IA][columna_IA + 1] == -1) && (tablero_3_en_raya[fila_IA][columna_IA + 2] == 1) && (tablero_3_en_raya[fila_IA][columna_IA] == 0))
+                                                ) {
+                                                    console.log("siguiente =" + fila_IA + " columna_IA = " + columna_IA);
+                                                    for (let x = fila_IA; x < fila_IA + 1; x++) {
+                                                        for (let y = 0; y < 3; y++) {
+                                                            if (tablero_3_en_raya[x][y] == -1 && turno_avanzado == false) {
+                                                                estado_turno_6 = true;
+                                                                eliminar(x, y);
+                                                                console.log("Se supone que estoy eliminando");
+                                                                modo_avanzado();
+                                                                estado_turno_6 = false;
+                                                                turno_avanzado = true;
+                                                            }
+                                                        }
+                                                    }
+                                                } else if (((tablero_3_en_raya[0][columna_IA] == -1) && (tablero_3_en_raya[1][columna_IA] == 0) && (tablero_3_en_raya[2][columna_IA] == 0))
+                                                    || ((tablero_3_en_raya[0][columna_IA] == 0) && (tablero_3_en_raya[2][columna_IA] == -1) && (tablero_3_en_raya[1][columna_IA] == 0))
+                                                    || ((tablero_3_en_raya[1][columna_IA] == -1) && (tablero_3_en_raya[2][columna_IA] == 0) && (tablero_3_en_raya[0][columna_IA] == 0))
+                                                    || ((tablero_3_en_raya[0][columna_IA] == 1) && (tablero_3_en_raya[1][columna_IA] == -1) && (tablero_3_en_raya[2][columna_IA] == 0))
+                                                    || ((tablero_3_en_raya[0][columna_IA] == -1) && (tablero_3_en_raya[2][columna_IA] == 1) && (tablero_3_en_raya[1][columna_IA] == 0))
+                                                    || ((tablero_3_en_raya[1][columna_IA] == 1) && (tablero_3_en_raya[2][columna_IA] == -1) && (tablero_3_en_raya[0][columna_IA] == 0))) {
+                                                    console.log("Filas y columnas: " + x + y);
+                                                    console.log("COLUMNAS");
+                                                    if (tablero_3_en_raya[0][columna_IA] == -1 && turno_avanzado == false) {
+                                                        estado_turno_6 = true;
+                                                        eliminar(0, columna_IA);
+                                                        console.log("Se supone que estoy eliminando");
+                                                        modo_avanzado();
+                                                        turno_avanzado = true;
+                                                        estado_turno_6 = false;
+                                                    } else if (tablero_3_en_raya[1][columna_IA] == -1 && turno_avanzado == false) {
+                                                        estado_turno_6 = true;
+                                                        eliminar(1, columna_IA);
+                                                        console.log("Se supone que estoy eliminando");
+                                                        modo_avanzado();
+                                                        turno_avanzado = true;
+                                                        estado_turno_6 = false;
+                                                    } else if (tablero_3_en_raya[2][columna_IA] == -1 && turno_avanzado == false) {
+                                                        estado_turno_6 = true;
+                                                        eliminar(2, columna_IA);
+                                                        console.log("Se supone que estoy eliminando");
+                                                        modo_avanzado();
+                                                        turno_avanzado = true;
+                                                        estado_turno_6 = false;
+                                                    }
+                                                } else if (((tablero_3_en_raya[0][0] == -1) && (tablero_3_en_raya[1][1] == 0) && (tablero_3_en_raya[2][2] == 0))
+                                                    || ((tablero_3_en_raya[0][0] == 0) && (tablero_3_en_raya[2][2] == -1) && (tablero_3_en_raya[1][1] == 0))
+                                                    || ((tablero_3_en_raya[1][1] == -1) && (tablero_3_en_raya[2][2] == 0) && (tablero_3_en_raya[0][0] == 0))
+                                                    || ((tablero_3_en_raya[0][0] == 1) && (tablero_3_en_raya[1][1] == -1) && (tablero_3_en_raya[2][2] == 0))
+                                                    || ((tablero_3_en_raya[0][0] == 1) && (tablero_3_en_raya[2][2] == -1) && (tablero_3_en_raya[1][1] == 0))
+                                                    || ((tablero_3_en_raya[1][1] == 1) && (tablero_3_en_raya[2][2] == 0) && (tablero_3_en_raya[0][0] == -1))
+                                                ) {
+                                                    if (tablero_3_en_raya[1][1] == -1 && turno_avanzado == false) {
+                                                        estado_turno_6 = true;
+                                                        eliminar(1, 1);
+                                                        console.log("Se supone que estoy eliminando");
+                                                        modo_avanzado();
+                                                        turno_avanzado = true;
+                                                        estado_turno_6 = false;
+                                                    } else if (tablero_3_en_raya[2][2] == -1 && turno_avanzado == false) {
+                                                        estado_turno_6 = true;
+                                                        eliminar(2, 2);
+                                                        console.log("Se supone que estoy eliminando");
+                                                        modo_avanzado();
+                                                        turno_avanzado = true;
+                                                        estado_turno_6 = false;
+                                                    } else if (tablero_3_en_raya[0][0] == -1 && turno_avanzado == false) {
+                                                        estado_turno_6 = true;
+                                                        eliminar(0, 0);
+                                                        console.log("Se supone que estoy eliminando");
+                                                        modo_avanzado();
+                                                        turno_avanzado = true;
+                                                        estado_turno_6 = false;
+                                                    }
+                                                } else if (((tablero_3_en_raya[0][2] == -1) && (tablero_3_en_raya[1][1] == 0) && (tablero_3_en_raya[2][0] == 0))
+                                                    || ((tablero_3_en_raya[0][2] == 0) && (tablero_3_en_raya[2][0] == -1) && (tablero_3_en_raya[1][1] == 0))
+                                                    || ((tablero_3_en_raya[1][1] == -1) && (tablero_3_en_raya[2][0] == 0) && (tablero_3_en_raya[0][2] == 0))
+                                                    || ((tablero_3_en_raya[0][2] == 1) && (tablero_3_en_raya[1][1] == -1) && (tablero_3_en_raya[2][0] == 0))
+                                                    || ((tablero_3_en_raya[0][2] == -1) && (tablero_3_en_raya[2][0] == 1) && (tablero_3_en_raya[1][1] == 0))
+                                                    || ((tablero_3_en_raya[1][1] == 1) && (tablero_3_en_raya[2][0] == -1) && (tablero_3_en_raya[0][2] == 0))
+                                                ) {
+                                                    if (tablero_3_en_raya[1][1] == -1 && turno_avanzado == false) {
+                                                        estado_turno_6 = true;
+                                                        eliminar(1, 1);
+                                                        console.log("Se supone que estoy eliminando");
+                                                        modo_avanzado();
+                                                        turno_avanzado = true;
+                                                        estado_turno_6 = false;
+                                                    } else if (tablero_3_en_raya[0][2] == -1 && turno_avanzado == false) {
+                                                        estado_turno_6 = true;
+                                                        eliminar(0, 2);
+                                                        console.log("Se supone que estoy eliminando");
+                                                        modo_avanzado();
+                                                        turno_avanzado = true;
+                                                        estado_turno_6 = false;
+                                                    } else if (tablero_3_en_raya[2][0] == -1 && turno_avanzado == false) {
+                                                        estado_turno_6 = true;
+                                                        eliminar(2, 0);
+                                                        console.log("Se supone que estoy eliminando");
+                                                        modo_avanzado();
+                                                        turno_avanzado = true;
+                                                        estado_turno_6 = false;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        //En caso de no encontrar posibilidad de colocar una ficha cerca de otra del mismo tipo.
+                                        for (let x = 0; x < 3; x++) {
+                                            for (let y = 0; y < 3; y++) {
+                                                if (tablero_3_en_raya[x][y] == -1 && turno_avanzado == false) {
+                                                    estado_turno_6 = true;
+                                                    eliminar(x, y);
+                                                    modo_avanzado();
+                                                    turno_avanzado = true;
+                                                    estado_turno_6 = false;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+
+                            }
+                        }
+
+
+                    } else if (modo == 1) {
+                        if (estado_turno_6 == true) {
+                            turnoPC_Usuario2(x, y, casilla, tablero_3_en_raya, modo);
+
+                            //Se revisa si se ha ganado en el turno y se muestra al jugador.
+                            revisionUsuario = verificarResultadoCasillas(x, y, tablero_3_en_raya);
+                            if (revisionUsuario == true) {
+                                console.log("No hace falta turno para el PC");
+                                alert("Se acabó tu show.");
+                                mostrarHistorial(turno_jugador);
+                                clearInterval(contadorTiempo2);
+                                desactivarBotones();
+                            }
+                        }
+                    }
+                    //////////////////////////////////////////6 fichas/////////////////////////////////////////
+                } else {
+                    /////////////////////////////////////9 FICHAS///////////////////////////////////////////////
+                    if (tablero_3_en_raya[x][y] == 0 && estado_turno == false) {
+                        colocar_ficha(x, y, 1, "cat");
+                        empate();
+                        //Se revisa si se ha ganado en el turno y se muestra al jugador.
+                        revisionUsuario = verificarResultadoCasillas(x, y, tablero_3_en_raya);
+                        if (revisionUsuario == true) {
+                            console.log("No hace falta turno para el PC");
+                            alert("Se acabó tu show.");
+                            mostrarHistorial(turno_jugador);
+                            clearInterval(contadorTiempo2);
+                            desactivarBotones();
+                        }
+                        else if (modo == 2 || modo == 3) {
+
+                            clearInterval(contadorTiempo2);
+                            temporizador();
+                            turno_jugador = "Su turno";
+                            const campoTurno = document.getElementById("turno");
+                            campoTurno.innerText = turno_jugador;
+                            //Se revisa si se ha ganado en el turno y se muestra al jugador.
+                            revisionUsuario = verificarResultadoCasillas(x, y, tablero_3_en_raya);
+                            if (revisionUsuario == true) {
+                                console.log("No hace falta turno para el PC");
+                                alert("Se acabó tu show.");
+                                mostrarHistorial(turno_jugador);
+                                clearInterval(contadorTiempo2);
+                                desactivarBotones();
+                            } else {
+                                if (modo == 2) {
+                                    //empate();
+                                    let contador = 0;
+                                    for (let i = 0; i < 3; i++) {
+                                        for (let j = 0; j < 3; j++) {
+                                            if (tablero_3_en_raya[i][j] != 0) {
+                                                contador++;
+                                            }
+                                        }
+                                    }
+                                    if (contador < 9) {
+                                        modo_aleatorio();
+                                    }
+                                    //Se revisa si se ha ganado en el turno y se muestra al jugador.
+                                    revisionUsuario = verificarResultadoCasillas(x, y, tablero_3_en_raya);
+                                    if (revisionUsuario == true) {
+                                        console.log("No hace falta turno para el PC");
+                                        alert("Se acabó tu show.");
+                                        mostrarHistorial(turno_jugador);
+                                        clearInterval(contadorTiempo2);
+                                        desactivarBotones();
+                                    }
+                                } else if (modo == 3) {
+                                    //////////////////////AVANZADO//////////////////////
+                                    modo_avanzado();
+                                    //////////////FINAL AVANZADO/////////////////////////
+                                }
+                            }
+                        }
+                        else {
+                            estado_turno = true;
+                        }
+                    }
+                    else if (tablero_3_en_raya[x][y] == 0 && estado_turno == true) {
+                        turnoPC_Usuario2(x, y, casilla, tablero_3_en_raya, modo);
+
+                        //Se revisa si se ha ganado en el turno y se muestra al jugador.
+                        revisionUsuario = verificarResultadoCasillas(x, y, tablero_3_en_raya);
+                        if (revisionUsuario == true) {
+                            console.log("No hace falta turno para el PC");
+                            alert("Se acabó tu show.");
+                            desactivarBotones();
+                            mostrarHistorial(turno_jugador);
+                            clearInterval(contadorTiempo2);
+                        }
+                    }
+                    /////////////////////////////////////9 FICHAS///////////////////////////////////////////////
+                }
+            }
+        }
+
+        function mostrarHistorial(turno_jugador) {
+            if (turno_jugador == "Jugador 2") {
+                const victorias1 = document.getElementById("conteoVictoriasJ1");
+                contadorVictoriasJ1++;
+                victorias1.innerText = contadorVictoriasJ1;
+                const derrotas2 = document.getElementById("conteoDerrotasJ2");
+                conteoDerrotasJ2++;
+                derrotas2.innerText = conteoDerrotasJ2;
+            } else {
+                const victorias2 = document.getElementById("conteoVictoriasJ2");
+                contadorVictoriasJ2++;
+                victorias2.innerText = contadorVictoriasJ2;
+
+                const derrotas1 = document.getElementById("conteoDerrotasJ1");
+                conteoDerrotasJ1++;
+                derrotas1.innerText = conteoDerrotasJ1;
+            }
+        }
+
+        empate = () => {
+            //Comprobación del número de fichas.
+            let contador_fichas = 0;
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    let fichita = tablero_3_en_raya[i][j];
+                    if (fichita == 1) {
+                        contador_fichas++;
+                    } else if (fichita == -1) {
+                        contador_fichas++;
+                    }
+                    //console.log(contador_fichas);
+                    //console.log("Posición" + i + j + ": " + fichita);
+                }
+            }
+
+            if (contador_fichas == 9) {
+                let segunda_revision = verificarResultadoCasillas(x, y, tablero_3_en_raya);
+                console.log("Soy la revision" + segunda_revision);
+                if (segunda_revision == undefined) {
+                    const empate1 = document.getElementsByClassName("conteoEmpates");
+                    contadorEmpate++;
+                    empate1[0].innerText = contadorEmpate;
+                    empate1[1].innerText = contadorEmpate;
+                    console.log(contadorEmpate);
+                }
+            }
+        }
+
+        desactivarBotones = () => {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    const boton = document.getElementById("boton" + i + j);
+                    boton.disabled = true;
+                }
+            }
+        }
+
+        //////////////////////////////////////////Tiempos//////////////////////////////////////////
+        var contadorTiempo1 = temporizador();
+        //funcion que inicializa y recorre segundos para el temporizador de turnos
+        function temporizador() {
+
+            fechaTemporizar = new Date();
+
+            fechaTemporizar.setSeconds(fechaTemporizar.getSeconds() + 30);
+            contadorTiempo2 = setInterval(restarTiempo, 1000);
+
+            function restarTiempo() {
+                let fecha = new Date();
+                let fechaRestante = fechaTemporizar - fecha;
+                let segundos = Math.floor((fechaRestante) / 1000);
+                const temporizadorObj = document.getElementById("tiempoRestante");
+
+                if (segundos == 0) {
+                    const divTiempo = document.getElementsByClassName("comentario_tiempo");
+                    //temporizadorObj.innerText = "asdasdasd";
+                    temporizadorObj.innerText = "Perdiste " + turno_jugador;
+                    divTiempo[0].innerText = "";
+                    divTiempo[1].innerText = "";
+                    clearInterval(contadorTiempo2);
+                    desactivarBotones();
+
+                    //Se añade la derrota al historial.
+
+                    if (turno_jugador == "Jugador 1") {
+                        var espacio1 = document.getElementById("conteoDerrotasJ1");
+                        conteoDerrotasJ1++;
+                        espacio1.innerText = conteoDerrotasJ1;
+                        var espacioJ2 = document.getElementById("conteoVictoriasJ2");
+                        contadorVictoriasJ2++;
+                        espacioJ2.innerText = contadorVictoriasJ2;
+                    } else {
+                        var espacio1 = document.getElementById("conteoDerrotasJ2");
+                        conteoDerrotasJ2++;
+                        espacio1.innerText = conteoDerrotasJ2;
+                        var espacioJ1 = document.getElementById("conteoVictoriasJ1");
+                        contadorVictoriasJ1++;
+                        espacioJ1.innerText = contadorVictoriasJ1;
+                    }
+                } else if (segundos != 0) {
+                    temporizadorObj.innerText = segundos;
+                }
+            }
+        }
+        iniciarTiempoTotal();
+        function iniciarTiempoTotal() {
+            fechaTemporizarTotal = new Date();
+            contadorTiempoTotal = setInterval(sumarTiempo, 100);
+            function sumarTiempo() {
+                let segundos;
+                let minutos = 0;
+                let fechaTotal = new Date();
+                let fechaRestanteTotal = fechaTotal - fechaTemporizarTotal;
+                const temporizadorTotal = document.getElementById("tiempoTotalContador");
+
+
+                if (Math.floor((fechaRestanteTotal) / 1000) >= 60) {
+                    minutos = Math.floor((fechaRestanteTotal) / 1000 / 60);
+                    let restante = fechaRestanteTotal % (1000 * 60);
+                    let segundos = Math.floor(restante / 1000);
+                    temporizadorTotal.innerText = minutos + " minutos y " + segundos + " segundos.";
+                } else {
+                    let segundos = Math.floor(fechaRestanteTotal / 1000);
+                    temporizadorTotal.innerText = minutos + " minutos y " + segundos + " segundos.";
+                }
+            }
+        }
+    </script>
+    </body>
+
+</html>
